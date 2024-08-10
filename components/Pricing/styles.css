@@ -1,0 +1,10 @@
+.swiper{
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+.packages .swiper-pagination-bullet {
+  position: relative;
+  margin-bottom: 0px !important;
+}
+
+
