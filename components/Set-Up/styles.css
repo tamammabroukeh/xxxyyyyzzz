@@ -1,0 +1,11 @@
+/*  */
+
+.hover\:rotate-effect:hover .rotate-image-1 {
+  transform: rotate(-20deg);
+}
+.hover\:rotate-effect:hover .rotate-image-2 {
+  transform: translateY(-25px);
+}
+.hover\:rotate-effect:hover .rotate-image-3 {
+  transform: rotate(20deg);
+}

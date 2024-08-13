@@ -6,5 +6,42 @@
   position: relative;
   margin-bottom: 0px !important;
 }
+/* pricing card */
+.cardgroup::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 3px;
+    border-radius: 0.5rem; 
+    background: linear-gradient(90deg, #714DFF 0%, rgba(156, 131, 255, 0.37) 48.95%, rgba(225, 81, 255, 0.77) 75%, rgba(65, 128, 154, 0.9) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 1s ease-in-out;
+  }
+  .cardgroup:hover::before {
+    opacity: 1;
+  }
+/* button card */
+.cardButton:hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(140, 182, 239, 0.92) 0.01%, rgba(156, 131, 255, 0.75) 50.5%, rgba(113, 77, 255, 0.84) 100%);
+  z-index: -1;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
 
-
+.cardButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(140, 182, 239, 0.92) 0.01%, rgba(156, 131, 255, 0.75) 50.5%, rgba(113, 77, 255, 0.84) 100%);
+  z-index: -1;
+  opacity: 0;
+  border-radius: 1rem;
+  transition: opacity 0.5s ease-in-out;
+}

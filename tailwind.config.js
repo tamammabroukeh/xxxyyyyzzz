@@ -96,6 +96,7 @@ module.exports = {
             'white-200':'#DEDEFB',
             'white-250':'#D0E0E9',
             'white-300':'#F7F8FF',
+            'white-350':'#DEEBF0',
             'white-400':'#DFE4E9',
             'white-450':'#E7ECF3',
             'white-500':'#FCFCFC',
@@ -113,6 +114,7 @@ module.exports = {
             'gray-800':'#35353A6E',
             'gray-850':'#474D59',
             'gray-900':'#4D5D64',
+            'gray-950':'#5F646538',
             'slate-200':'#B2CDD2',
             'slate-400':"#D9E6EB",
             'yellow-300':'#FFF86BF2',
@@ -130,4 +132,3 @@ module.exports = {
     }),
   ],
 }
-// #EAC608

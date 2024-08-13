@@ -6,7 +6,7 @@ import { FooterSection, Navbar } from "@/components";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    template: `%s - ${siteConfig.navItems}`,
   },
   description: siteConfig.description,
   icons: {
@@ -21,7 +21,7 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default function WebsiteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

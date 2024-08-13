@@ -7,7 +7,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { Link } from "@nextui-org/link";
 import NextLink from "next/link";
 // import { IconBaselineDensityMedium } from "@tabler/icons-react";
 import { Divider } from "@nextui-org/divider";
@@ -37,9 +36,13 @@ export const Navbar = () => {
       <div className="mx-5 mt-2 font-[400] flex flex-col gap-4">
         {siteConfig.navMenuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="text-white-200 text-md" href={item.href} size="lg">
+            <NavigationLink
+              className="text-white-200 text-md"
+              href={item.href}
+              isSection={item.isSection}
+            >
               {item.label}
-            </Link>
+            </NavigationLink>
           </NavbarMenuItem>
         ))}
         <Divider className="bg-white-200" />
@@ -61,7 +64,7 @@ export const Navbar = () => {
   };
 
   return (
-    <NextUINavbar className="mx-auto max-w-[1080px] md:rounded-full py-2 bg-black-800 fixed">
+    <NextUINavbar className="mx-auto max-w-[1080px] md:rounded-full py-2 bg-tranparent fixed">
       <NavbarContent className="flex lg:-ml-6 gap-10" justify="center">
         <NavbarBrand as="li" className="">
           <NextLink href="/">
@@ -88,7 +91,7 @@ export const Navbar = () => {
         />
       </NavbarContent>
       {/* menu */}
-      <NavbarMenu className="bg-sky-600 opacity-95 py-16">
+      <NavbarMenu className="bg-sky-600 mt-4 opacity-95 py-12">
         {navMenu()}
       </NavbarMenu>
     </NextUINavbar>

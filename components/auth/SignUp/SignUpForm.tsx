@@ -6,32 +6,75 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { SubmitHandler } from "react-hook-form";
+import { useAction } from "next-safe-action/hooks";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 import InputWithLabel from "../InputWithLabel";
 
 import { SignUpSchema, SignUpType } from "@/validations/SignUpSchema";
+import { SignUpAction } from "@/actions/signup-action";
 export default function SignUpForm() {
+  const [isSelected, setIsSelected] = React.useState<boolean | undefined>(
+    false,
+  );
+  const notify = () => toast("");
+  const [error, setError] = React.useState<string | undefined>("");
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
+    reset,
+    getValues,
     formState: { errors: formErrors },
   } = useForm<SignUpType>({
     mode: "all",
     resolver: zodResolver(SignUpSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
+    },
   });
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isSelected, setIsSelected] = React.useState(false);
-  const [error, setError] = React.useState("");
+
+  const { executeAsync, result, isExecuting } = useAction(SignUpAction, {
+    onSuccess: ({ data }) => {
+      toast.success(data?.message);
+    },
+    onError: ({ error }) => {
+      setError(error.serverError);
+    },
+  });
+
   const submitHandler: SubmitHandler<SignUpType> = async (data) => {
-    setIsLoading(true);
-    
-    setError("Invalid Email Or password");
+    notify;
+    await executeAsync(getValues());
+    router.push("/");
+    reset(getValues());
+    // setIsLoading(true);
+    // startTransistion(() => {
+    //   SignUpAction(data).then((res) => {
+    //     setError(res?.toString());
+    //     // setSuccess(data.success);
+    //   });
+    // });
   };
 
   console.log(error);
+  const disableButton =
+    (!!getValues().name &&
+      !!getValues().email &&
+      !!getValues().password &&
+      !!getValues().confirmpassword) ||
+    (!!formErrors.name &&
+      !!formErrors.email &&
+      !!formErrors.password &&
+      !!formErrors.confirmpassword);
 
   return (
-    <div>
+    <>
       <form
         className="flex gap-2 justify-center flex-col"
         onSubmit={handleSubmit(submitHandler)}
@@ -44,7 +87,8 @@ export default function SignUpForm() {
             nameInSchema="name"
             placeholder="Tammam"
             register={register}
-            serverError={error}
+            // disabled={isPending}
+            serverError={error ?? ""}
           />
           <InputWithLabel
             description="Enter your email address like email@gmail.com"
@@ -53,7 +97,7 @@ export default function SignUpForm() {
             nameInSchema="email"
             placeholder="email@gmail.com"
             register={register}
-            serverError={error}
+            serverError={error ?? ""}
           />
           <InputWithLabel
             description="Password should contain 8 characters at least"
@@ -62,7 +106,7 @@ export default function SignUpForm() {
             nameInSchema="password"
             placeholder="ocean23!"
             register={register}
-            serverError={error}
+            serverError={error ?? ""}
           />
           <InputWithLabel
             description="Confirm Password should match the password"
@@ -71,7 +115,7 @@ export default function SignUpForm() {
             nameInSchema="confirmpassword"
             placeholder="ocean23!"
             register={register}
-            serverError={error}
+            serverError={error ?? ""}
           />
         </div>
         {error && <p className="text-sm text-danger">{error}</p>}
@@ -91,9 +135,10 @@ export default function SignUpForm() {
         </div>
         <div className="flex flex-col mt-4 gap-2 justify-center items-center">
           <Button
-            className={`text-black-200 text-md bg-slate-400 px-24 py-3 rounded-2xl ${formErrors?.password || formErrors?.email ? "cursor-not-allowed" : "cursor-pointer"}`}
-            disabled={!!formErrors?.password || !!formErrors?.email}
-            isLoading={isLoading}
+            className={`text-black-200 text-md bg-slate-400 px-24 py-3 rounded-2xl ${!disableButton ? "cursor-not-allowed" : "cursor-pointer"}`}
+            disabled={!disableButton}
+            // isLoading={isLoading}
+            isLoading={isExecuting}
             type="submit"
           >
             Sign Up
@@ -109,6 +154,6 @@ export default function SignUpForm() {
           </div>
         </div>
       </form>
-    </div>
+    </>
   );
 }

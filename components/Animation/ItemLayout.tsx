@@ -9,14 +9,14 @@ const ItemLayout = ({ children, className }: IItemLayout) => {
       <motion.div
       className={clsx(
         `shadow-2xl rounded-2xl border-[1px] border-black-500
-        hover:shadow-slate-400
+        hover:shadow-slate-400 animate delay-150 duration-300
       `,
         className,
       )}
-      initial={{ scale: 0.85 }}
-      transition={{ duration: 1 }}
-      viewport={{ once: true, amount: "some" }}
-      whileInView={{ scale: 1 }}
+      // initial={{ scale: 0.85 }}
+      // transition={{ duration: 1 }}
+      // viewport={{ once: true, amount: "some" }}
+      // whileInView={{ scale: 1 }}
     >
       {children}
     </motion.div>

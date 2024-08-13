@@ -2,28 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @font-face {
-  font-family: 'Colfax';
-  src: url('/colfax-font/Colfax-Regular.woff2') format('woff2'),
-       url('/colfax-font/Colfax-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Colfax';
-  src: url('/colfax-font/Colfax-Bold.woff2') format('woff2'),
-       url('/colfax-font/Colfax-Bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-}
-
-body {
-  font-family: 'Colfax', sans-serif;
-} */
-
-
-
 .hover\:bg-custom-gradient:hover {
   @apply bg-custom-gradient;
 }
@@ -75,4 +53,26 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+/* Get Started Button */
+.getStartedBtn-hover-gradient {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.getStartedBtn-hover-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from 90deg at 50% 50%, rgba(225, 81, 255, 0.2) 0deg, rgba(113, 77, 255, 0.25) 54deg, rgba(156, 131, 255, 0.29) 111.6deg, rgba(140, 182, 239, 0.22) 208.8deg, rgba(225, 81, 255, 0.2) 360deg);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 0;
+}
+
+.getStartedBtn-hover-gradient:hover::before {
+  opacity: 0.8;
 }

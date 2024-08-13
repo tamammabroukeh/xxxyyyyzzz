@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
+import { ButtonProps } from "@nextui-org/button";
 import { Icon, IconProps } from "@tabler/icons-react";
-import { FC, ForwardRefExoticComponent, RefAttributes } from "react";
+import { ButtonHTMLAttributes, FC, ForwardRefExoticComponent, RefAttributes } from "react";
 
 export interface IErrorHandler {
   statusCode?: number;
@@ -89,4 +90,34 @@ export interface ISocialIcon{
   id:string;
   Icon:ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
   link:string;
+}
+// Get Started Button landingpage
+export interface IButton extends ButtonProps {
+  children: React.ReactNode;
+  classes: string;
+  IconClasses: string;
+}
+// array of images
+export interface ISvgImage{
+  img: React.FC<React.SVGAttributes<{}>>
+}
+// export interface ISvgImages{
+//   imgs: ISvgImage[]
+// }
+// setup type card
+export interface ISetUpCard{
+  Imgs:{
+    img1: FC<React.SVGAttributes<{}>>
+    | ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+    img2:FC<React.SVGAttributes<{}>>
+    | ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+    img3:FC<React.SVGAttributes<{}>>
+    | ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+  };
+  title:string;
+  description:string;
+  marginBottom:number;
+  left:number;
+  zIndex?:number;
+  href:string;
 }

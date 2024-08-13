@@ -13,7 +13,9 @@ export default function SinglePackage({
   price,
   type,
 }: IPackages) {
-  const Icon = <IconCircleCheck className="text-blue-500 w-10 h-10" />;
+  const Icon = (
+    <IconCircleCheck className="text-blue-500 w-8 h-8 md:w-10 md:h-10" />
+  );
   const GPT = <SingleDetail>ChatGPT {GPTPlus ? "Plus" : "3.5"}</SingleDetail>;
   const isSupport = (
     <SingleDetail>{Support ? "Advanced" : "Basic"} Support</SingleDetail>
@@ -33,7 +35,7 @@ export default function SinglePackage({
   return (
     <Card>
       <div className="flex flex-col gap-3 md:gap-5 lg:gap-8">
-        <h1 className="text-3xl md:text-xl lg:text-3xl text-center font-[500] leading-[2.5rem] text-gradient-inspiring">
+        <h1 className="text-3xl md:text-xl lg:text-3xl text-center font-[500] leading-[2.5rem] bg-clip-text text-transparent text-gradient-inspiring">
           {type}
         </h1>
         <div className="flex font-[500] justify-start gap-1 text-black-200 ml-2">
@@ -53,7 +55,7 @@ export default function SinglePackage({
         ))}
       </div>
       <Link
-        className={`${!type.includes("Standard") ? "bg-slate-400 text-black-200 hover:bg-black-200 hover:text-slate-400" : "bg-gray-900 text-slate-400 hover:bg-slate-400 hover:text-gray-900"} animate transition-all duration-150 delay-150 ease-in-out rounded-2xl py-[0.625rem] text-md leading-[1.5rem] font-[400]`}
+        className={`${!type.includes("Standard") ? "bg-slate-400 text-black-200" : "bg-gray-900 text-slate-400"} animate transition-all duration-150 delay-150 ease-in-out rounded-2xl py-[0.625rem] text-md leading-[1.5rem] font-[400] hover:text-background z-10 relative cardButton`}
         href={id}
       >
         Select Free

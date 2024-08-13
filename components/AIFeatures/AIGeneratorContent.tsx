@@ -2,6 +2,8 @@ import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import { IconChevronsRight } from "@tabler/icons-react";
 
+import GetStartedButton from "../ui/GetStartedButton";
+
 import { AITextGenerator, AITextGeneratorSmallScreens } from "@/public";
 import { IAIContentTabs } from "@/interfaces";
 export default function AIGeneratorContent({
@@ -24,7 +26,7 @@ export default function AIGeneratorContent({
       </div>
       <div className="bg-white-100 md:px-4 px-7 basis-1/2 py-5 flex flex-col justify-around items-start space-y-4 md:space-y-0">
         <div className="bg-black-900 rounded-full">
-          <p className="font-[500] py-5 px-[12px] md:py-[0.5rem] md:px-[1.25rem] text-xs md:text-md leading-[14px] md:leading-[1.5rem] text-gradient-inspiring text-nowrap">
+          <p className="font-[500] py-2.5 lg:py-4 px-[1rem] md:py-[0.5rem] md:px-[1.25rem] text-xs md:text-md leading-[14px] md:leading-[1.5rem] text-gradient-inspiring text-nowrap">
             AI {title} Generator
           </p>
         </div>
@@ -36,12 +38,12 @@ export default function AIGeneratorContent({
             {description}
           </p>
         </div>
-        <Button
-          className="bg-transparent px-[8px] md:px-[12px] py-[20px] md:py-[2rem] text-md md:text-[25px] lg:text-2xl text-black-200"
-          endContent={<IconChevronsRight className="w-7 h-7 md:w-10 md:h-10" />}
+        <GetStartedButton
+          IconClasses="w-7 h-7 md:w-10 md:h-10"
+          classes="px-[8px] md:px-[12px] py-[20px] md:py-[2rem] md:text-[25px] lg:text-2xl"
         >
           Get Started
-        </Button>
+        </GetStartedButton>
       </div>
     </div>
   );

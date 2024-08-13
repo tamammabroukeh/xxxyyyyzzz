@@ -1,7 +1,8 @@
 import { z } from "zod";
 
 export const ServiceSchema = z.object({
-  id: z.number().int().positive(),
-  text: z.string().min(5, { message: "Must be 5 or more characters long" }),
+  text: z.string().min(5, {
+    message: "The text must contain at least 5 words, please Try again!",
+  }),
 });
-export type User = z.infer<typeof ServiceSchema>;
+export type ServiceType = z.infer<typeof ServiceSchema>;

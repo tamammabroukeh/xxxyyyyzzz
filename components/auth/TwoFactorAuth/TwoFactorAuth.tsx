@@ -7,12 +7,12 @@ import { SignUpBackground } from "@/public";
 const TwoFactorAuth = () => {
   return (
     <AuthPageLayout alt="Background SignIn Page" img={SignUpBackground}>
-      <div className="translate-y-20 flex flex-col justify-center gap-5 xl:translate-x-10 xl:translate-y-32">
+      <div className="my-16 md:mx-3 md:my-14 lg:mx-5 lg:my-20 xl:mx-8 xl:my-28 flex flex-col justify-center gap-4 lg:gap-5">
         <Heading
-          classes="text-xl text-nowrap md:text-2xl lg:text-3xl"
+          classes="text-xl lg:text-nowrap text-wrap md:text-2xl lg:text-3xl"
           title="Two-Factor Authentication"
         />
-        <p className="text-sm font-[400] text-gray-150 mx-auto text-center w-[70%]">
+        <p className="text-sm font-[400] text-gray-150 mx-auto text-center w-[85%] md:w-[70%]">
           A confirmation code has been sent to your Google Authenticator app.
         </p>
         <TwoFactorAuthForm />

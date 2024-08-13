@@ -1,12 +1,13 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { ToastContainer } from "react-toastify";
 
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { Colfax } from "@/config/fonts";
-import { FooterSection, Navbar } from "@/components";
+import "react-toastify/dist/ReactToastify.css";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -35,9 +36,8 @@ export default function RootLayout({
       <head />
       <body className={clsx("bg-background font-colfax", Colfax.className)}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          {/* <Navbar /> */}
           <main className="mx-auto max-w-full">{children}</main>
-          {/* <FooterSection /> */}
+          <ToastContainer position="top-left" />
         </Providers>
       </body>
     </html>

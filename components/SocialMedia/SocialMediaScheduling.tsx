@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import { IconChevronsRight } from "@tabler/icons-react";
-import { Button } from "@nextui-org/button";
 import Image from "next/image";
+
+import GetStartedButton from "../ui/GetStartedButton";
 
 import { SocialIcons } from ".";
 
@@ -26,12 +26,12 @@ export default function SocialMediaScheduling() {
         <div className="flex flex-wrap justify-start gap-4 md:gap-3 lg:gap-6 ">
           <SocialIcons />
         </div>
-        <Button
-          className="hidden md:flex bg-transparent px-[8px] md:px-[12px] py-[20px] md:py-[32px] text-md md:text-md lg:text-2xl text-black-200"
-          endContent={<IconChevronsRight className="w-7 h-7" />}
+        <GetStartedButton
+          IconClasses="w-7 h-7"
+          classes="hidden md:flex px-2 md:px-[12px] py-[1.25rem] md:py-[2rem] lg:text-2xl"
         >
           Get Started
-        </Button>
+        </GetStartedButton>
       </div>
       {/* right side */}
       <div className="basis-1/2">
@@ -41,12 +41,12 @@ export default function SocialMediaScheduling() {
           src={SocialMediaSchedulingIcon}
         />
       </div>
-      <Button
-        className="flex justify-center items-center flex-1 mt-5 w-[50%] md:hidden bg-transparent py-[25px] md:py-[32px] text-md text-black-200"
-        endContent={<IconChevronsRight className="w-6 h-6" />}
+      <GetStartedButton
+        IconClasses="w-6 h-6"
+        classes="flex justify-center items-center flex-1 mt-5 w-[50%] md:hidden py-[1rem]"
       >
         Get Started
-      </Button>
+      </GetStartedButton>
     </div>
   );
 }

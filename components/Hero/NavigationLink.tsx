@@ -9,11 +9,13 @@ type Props = ComponentProps<typeof Link> & {
   href: string;
   isSection: boolean;
   children: React.ReactNode;
+  classes?: string;
 };
 export default function NavigationLink({
   children,
   href,
   isSection,
+  classes,
   ...rest
 }: Props) {
   const selectedLayoutSegment = useSelectedLayoutSegment();
@@ -41,6 +43,7 @@ export default function NavigationLink({
       className={clsx(
         "hover:text-sky-500",
         isActive ? "text-sky-500" : "text-navItem",
+        classes
       )}
       href={href}
       onClick={(e) => handleClick(e, href, isSection)}

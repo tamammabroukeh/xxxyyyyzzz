@@ -37,16 +37,17 @@ export default function ThemeCard({ themesCard }: IThemeCards) {
             )}
           </div>
         </CardHeader>
-        <CardBody className="overflow-visible p-0 z-0">
-          <Image
-            isZoomed
-            alt={title}
-            className="w-full h-[370px] lg:h-[486px] rounded-tr-2xl rounded-tl-2xl relative object-cover"
-            radius="none"
-            shadow="sm"
-            src={img}
-            width="100%"
-          />
+        <CardBody className="overflow-visible p-0 z-0 relative">
+            <Image
+              isZoomed
+              alt={title}
+              className={`w-full h-[370px] lg:h-[486px] rounded-tr-2xl rounded-tl-2xl relative object-cover`}
+              radius="none"
+              shadow="sm"
+              src={img}
+              width="100%"
+            />
+            {!isAvailable && <div className="absolute z-50 inset-0 bg-gray-950 rounded-md" />}
           {!isAvailable && <div className="absolute px-7 py-2 rounded-3xl flex justify-center items-center top-[45%] left-[20%] md:left-[30%] z-10 bg-blue-350 ">
             <p className="text-white-100 font-[500] text-md md:text-lg">In progress...</p>
           </div>}

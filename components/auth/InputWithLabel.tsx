@@ -6,9 +6,8 @@ import {
 } from "@tabler/icons-react";
 import { Input } from "@nextui-org/input";
 import { FieldValues } from "react-hook-form";
-import React from "react";
 import "./styles.css";
-import { FocusEvent } from "react";
+import React, { FocusEvent } from "react";
 import { Tooltip } from "@nextui-org/tooltip";
 
 import { TFormInput } from "@/types";
@@ -23,7 +22,7 @@ const InputWithLabel = <TFieldValue extends FieldValues>({
   serverError,
   description,
 }: TFormInput<TFieldValue>) => {
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState<boolean>(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const onBlurHandler = (event: FocusEvent<HTMLInputElement>) => {
     if (onBlur) {

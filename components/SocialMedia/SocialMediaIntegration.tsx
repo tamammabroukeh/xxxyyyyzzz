@@ -10,6 +10,7 @@ import { SocialIntegrationIcons } from "./SocialIcons";
 import { ComingHome } from "./icons";
 
 import { PhotoPost, PhotoPostSmall } from "@/public";
+import GetStartedButton from "../ui/GetStartedButton";
 
 export default function SocialMediaIntegration() {
   return (
@@ -46,12 +47,12 @@ export default function SocialMediaIntegration() {
             Choose which social channels you want to post to - create once,
             publish everywhere.
           </p>
-          <Button
-            className="hidden md:flex justify-start bg-transparent px-[8px] md:pr-4 py-[20px] md:py-8 text-md md:text-md lg:text-2xl text-black-200 w-[50%]"
-            endContent={<IconChevronsRight className="md:w-12 md:h-12 lg:w-8 lg:h-8" />}
-          >
-            Get Started
-          </Button>
+          <GetStartedButton
+          IconClasses="md:w-12 md:h-12 lg:w-8 lg:h-8"
+          classes="hidden md:flex justify-start px-2 py-[1.25rem] md:py-8 lg:text-2xl w-[48%] xl:w-[45%]"
+        >
+          Get Started
+        </GetStartedButton>
         </div>
       </div>
     </div>

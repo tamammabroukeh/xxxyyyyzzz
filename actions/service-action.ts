@@ -10,17 +10,18 @@ export const sendServiceAction = actionClient
     handleValidationErrorsShape: (ve) =>
       flattenValidationErrors(ve).fieldErrors,
   })
-  .action(async ({ parsedInput: { id, text } }) => {
-    await fetch(`${process.env.END_POINT}/${id}`, {
+  .action(async ({ parsedInput: { text } }) => {
+    await fetch(`${process.env.END_POINT}/service`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        id,
-        text,
-      }),
-    });
+      body: JSON.stringify({ text }),
+    })
+      .then((res) => res.json())
+      .catch((err) => {
+        if (err instanceof Error) return err.message;
+      });
 
     return { message: `Your message was sent! 🎉` };
   });

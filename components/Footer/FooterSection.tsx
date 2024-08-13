@@ -34,9 +34,9 @@ export default function FooterSection() {
           </div>
         </div>
       </div>
-      <div className="md:hidden bg-white-50 my-5">
+      {/* <div className="md:hidden bg-white-50 my-5">
         <Divider className="w-[30%] rounded-[10px] bg-[#17191C] h-[5px] mx-auto" />
-      </div>
+      </div> */}
     </div>
   );
 }

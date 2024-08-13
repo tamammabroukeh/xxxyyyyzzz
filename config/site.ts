@@ -43,7 +43,7 @@ export const siteConfig = {
     },
     {
       label: "Theme",
-      href: "theme",
+      href: "themes",
       isSection: true,
     },
     {
