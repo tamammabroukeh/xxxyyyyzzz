@@ -29,6 +29,7 @@ const SetUpPage = () => {
           left={18}
           marginBottom={2}
           title="Site Form Scratch"
+          zIndex={10}
         />
       </div>
     </div>
