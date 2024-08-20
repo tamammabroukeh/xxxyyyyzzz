@@ -7,6 +7,5 @@ export default function Card({ children }: IItemLayout) {
     </div>
   );
 }
-// background: #5F646538;
 
 

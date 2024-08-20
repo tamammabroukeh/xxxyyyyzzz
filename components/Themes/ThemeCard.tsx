@@ -1,29 +1,42 @@
+"use client";
 /* eslint-disable prettier/prettier */
 import React from "react";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Tooltip } from "@nextui-org/tooltip";
 import { IconStar, IconStarFilled } from "@tabler/icons-react";
+import { useSearchParams } from "next/navigation";
 
 import { ItemLayout } from "../Animation";
 
-import { IThemeCards } from "@/interfaces";
+import { IThemeCard } from "@/interfaces";
 import { textSlicer } from "@/utils/functions";
-export default function ThemeCard({ themesCard }: IThemeCards) {
-  const {
-    description,
+export default function ThemeCard({ themesCard, setSelectedKey }: {themesCard:IThemeCard , setSelectedKey:(value:string) => void}) {
+  const {description,
     img,
     isFavourite,
     isPremium,
     numberOfFavourites,
     title,
     isAvailable,
-  } = themesCard;
+    id,} = themesCard
   const bgColor = isAvailable ? "bg-gray-500":"bg-gray-450";
+
+   const searchParams = useSearchParams();
+
+  const handleTabChange = (name: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(name, value);
+    window.history.pushState(null, "", `?${params.toString()}`);
+    localStorage.setItem("themeId", id);
+    setSelectedKey("content")
+  };
 
   return (
     <ItemLayout>
-      <Card isPressable className="relative bg-white-100" shadow="md">
+      <Card isPressable className="relative bg-white-100" shadow="md" onClick={() =>
+          handleTabChange("tab", 'content')
+        }>
         <CardHeader className="absolute z-10 top-3 right-3 md:top-7 md:right-7 flex-col !items-end">
           <div className={`px-4 md:px-6 py-2 ${bgColor} rounded-full`}>
             {isAvailable ? (
@@ -41,7 +54,7 @@ export default function ThemeCard({ themesCard }: IThemeCards) {
             <Image
               isZoomed
               alt={title}
-              className={`w-full h-[370px] lg:h-[486px] rounded-tr-2xl rounded-tl-2xl relative object-cover`}
+              className={`w-full h-[370px] lg:h-[400px] rounded-tr-2xl rounded-tl-2xl relative object-cover`}
               radius="none"
               shadow="sm"
               src={img}

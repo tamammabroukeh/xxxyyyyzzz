@@ -121,3 +121,10 @@ export interface ISetUpCard{
   zIndex?:number;
   href:string;
 }
+// set up
+export interface IBreadCrumb{
+  id:string;
+  title:string;
+  param:string;
+  content:React.ReactNode
+}

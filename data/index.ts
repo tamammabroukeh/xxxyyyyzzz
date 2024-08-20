@@ -4,7 +4,7 @@ import { IconMail, IconTemplate, IconNews, IconBrandInstagram, IconCalendarEvent
 import { FACEBOOK_URL, INSTGRAM_URL, LINKEDIN_URL, X_URL, YOUTUBE_URL } from "./constant";
 
 import { DalleAI, NovelAI, OpenAI, StabilityAI } from "@/components/icons";
-import { IIcons, IPackages, IQuestion, ISocialIcon, ITasks, IThemeCard } from "@/interfaces";
+import { IBreadCrumb, IIcons, IPackages, IQuestion, ISocialIcon, ITasks, IThemeCard } from "@/interfaces";
 import { InspiringRectangle22,InspiringRectangle23 } from "@/public";
 
 export const tasks:ITasks[] = [
@@ -140,3 +140,10 @@ export const FooterIcons:ISocialIcon[] = [
   {id:crypto.randomUUID(), Icon: IconBrandYoutube, link:YOUTUBE_URL},
   {id:crypto.randomUUID(), Icon: IconBrandLinkedin, link:LINKEDIN_URL},
 ]
+// set up
+// export const BreadCrumbsPreBuilt:IBreadCrumb[] = [
+//   {id:crypto.randomUUID(), title:"Setup Type", param:"setup"},
+//   {id:crypto.randomUUID(), title:"Select Site", param:"selectsite"},
+//   {id:crypto.randomUUID(), title:"Content", param:"content"},
+//   {id:crypto.randomUUID(), title:"Installations", param:"installation"},
+// ]

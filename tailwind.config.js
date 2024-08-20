@@ -115,10 +115,13 @@ module.exports = {
             'gray-850':'#474D59',
             'gray-900':'#4D5D64',
             'gray-950':'#5F646538',
+            'slate-100':'#A7A9AB',
             'slate-200':'#B2CDD2',
+            'slate-300':'#E9EDF4BF',
             'slate-400':"#D9E6EB",
             'yellow-300':'#FFF86BF2',
             'yellow-500':'#EAC608',
+            'green-500':'#49C746',
             'red-500':'#FF7575'
           },
         },

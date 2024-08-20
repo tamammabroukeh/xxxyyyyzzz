@@ -25,7 +25,7 @@ export default function SocialIcons() {
           </span>
         </div>
       )
-    )};
+    )}
   </>
 }
 export const SocialIntegrationIcons = () => {
@@ -36,6 +36,6 @@ export const SocialIntegrationIcons = () => {
       bg-white-500 hover:shadow-slate-300">
         <Icon.Icon className="w-44 lg:w-full"/>
       </MotionSocial>
-    ))};
+    ))}
   </>
 };

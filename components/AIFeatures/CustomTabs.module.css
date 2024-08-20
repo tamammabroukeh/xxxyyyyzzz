@@ -24,14 +24,14 @@
     padding: 30px 20px;
   }
   .tabItem:first-of-type {
-  margin-top: 25px;
-}
-.tabItem:last-of-type {
-  margin-bottom: 25px;
-}
+    margin-top: 25px;
+  }
+  .tabItem:last-of-type {
+    margin-bottom: 25px;
+  }
 }
 @media (min-width: 768px) {
   .tabList, .tabItemSelected {
-    border-radius: 9999px; /* Full border radius for large screens */
+    border-radius: 9999px;
   }
 }

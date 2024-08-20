@@ -3,3 +3,15 @@ export const INSTGRAM_URL = "https://instgram.com/";
 export const X_URL = "https://x.com/";
 export const LINKEDIN_URL = "https://linkedin.com/";
 export const YOUTUBE_URL = "https://facebook.com/";
+
+export const selectsiteTitle = [
+  "What Kind of ",
+  "Sites",
+  " would you like to make?",
+];
+export const contentTitle = [
+  'Select Content of the "',
+  "Software",
+  '" Pre-Built Website',
+];
+export const installationTitle = ["Install And Start Your ", "Website Journey"];
