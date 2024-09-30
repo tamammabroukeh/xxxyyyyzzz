@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+"user server"
 import { GET_REQUIRS_ROUTE } from "./constants";
 import { headers } from "@/api/constants";
 import apiFetcher from "@/api/instance";
