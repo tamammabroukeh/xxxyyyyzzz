@@ -5,13 +5,13 @@ import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Tooltip } from "@nextui-org/tooltip";
 import { IconStar, IconStarFilled } from "@tabler/icons-react";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { ItemLayout } from "../Animation";
 
 import { IThemeCard } from "@/interfaces";
 import { textSlicer } from "@/utils/functions";
-export default function ThemeCard({ themesCard, setSelectedKey }: {themesCard:IThemeCard , setSelectedKey:(value:string) => void}) {
+export default function ThemeCard({ themesCard, setSelectedKey }: {themesCard:IThemeCard , setSelectedKey?:(value:string) => void}) {
   const {description,
     img,
     isFavourite,
@@ -21,21 +21,29 @@ export default function ThemeCard({ themesCard, setSelectedKey }: {themesCard:IT
     isAvailable,
     id,} = themesCard
   const bgColor = isAvailable ? "bg-gray-500":"bg-gray-450";
-
-   const searchParams = useSearchParams();
-
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams();
   const handleTabChange = (name: string, value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(name, value);
-    window.history.pushState(null, "", `?${params.toString()}`);
-    localStorage.setItem("themeId", id);
-    setSelectedKey("content")
+    if(isAvailable){
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+      params.set("themeId", id);
+      if(pathname === "/"){
+        router.push(`/setup/selectsite?${params.toString()}`);
+        console.log(params.toString())
+        return;
+      }
+      window.history.pushState(null, "", `?${params.toString()}`);
+      // localStorage.setItem("themeId", id);
+      setSelectedKey && setSelectedKey("content")
+    }
   };
 
   return (
     <ItemLayout>
-      <Card isPressable className="relative bg-white-100" shadow="md" onClick={() =>
-          handleTabChange("tab", 'content')
+      <Card isPressable className="relative bg-white-100" shadow="md" onClick={() => 
+        handleTabChange("tab", 'content')
         }>
         <CardHeader className="absolute z-10 top-3 right-3 md:top-7 md:right-7 flex-col !items-end">
           <div className={`px-4 md:px-6 py-2 ${bgColor} rounded-full`}>

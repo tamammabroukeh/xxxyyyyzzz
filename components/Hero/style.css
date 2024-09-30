@@ -1,0 +1,22 @@
+.howItWorkBtn {
+  border: 2px solid #0000;
+  background: linear-gradient(#ddddde, #e8e8e8) padding-box, linear-gradient(
+        var(--angle),
+        #0122ff,
+        #c2cbf5,
+        #6e40f9
+      ) border-box;
+  animation: 3s rotate linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}

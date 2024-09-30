@@ -1,8 +1,9 @@
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
 import { FooterSection, Navbar } from "@/components";
+import Sidebar from "@/components/ui/SideBar";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -14,13 +15,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
-
 export default function WebsiteLayout({
   children,
 }: Readonly<{
@@ -29,7 +23,9 @@ export default function WebsiteLayout({
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-full">{children}</main>
+      <main className="mx-auto relative max-w-full">{children}
+        {/* <Sidebar /> */}
+      </main>
       <FooterSection />
     </>
   );

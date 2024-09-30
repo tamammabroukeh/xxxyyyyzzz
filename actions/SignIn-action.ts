@@ -23,5 +23,5 @@ export const loginAction = actionClient
 
     console.log(!res.ok);
 
-    return { message: `login successfuly! 🎉` };
+    return { message: `login successfuly! ` };
   });

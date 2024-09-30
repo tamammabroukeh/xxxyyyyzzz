@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use client";
 import {
   IconAlertCircleFilled,
@@ -70,7 +71,9 @@ const InputWithLabel = <TFieldValue extends FieldValues>({
       : "";
 
   const typePasword =
-    fieldTitle !== "Password" && fieldTitle !== "Confirm Password";
+    fieldTitle !== "Password" &&
+    fieldTitle !== "Confirm Password" &&
+    fieldTitle !== "Database Password";
   const fieldType = typePasword ? "text" : isVisible ? "text" : "password";
 
   return (
@@ -80,17 +83,19 @@ const InputWithLabel = <TFieldValue extends FieldValues>({
           <label className={`${errClass} text-sm`} htmlFor={fieldTitle}>
             {fieldTitle}
           </label>
-          <Tooltip
-            color="primary"
-            content={description}
-            delay={500}
-            placement="top"
-          >
-            <IconAlertCircleFilled
-              className={`w-4 h-4 ${errIcon}`}
-              title="description"
-            />
-          </Tooltip>
+          {description && (
+            <Tooltip
+              color="primary"
+              content={description}
+              delay={500}
+              placement="top"
+            >
+              <IconAlertCircleFilled
+                className={`w-4 h-4 ${errIcon}`}
+                title="description"
+              />
+            </Tooltip>
+          )}
         </div>
         <Input
           className={`w-full rounded-xl ${errClass}`}
@@ -101,6 +106,7 @@ const InputWithLabel = <TFieldValue extends FieldValues>({
           id={fieldTitle}
           {...onBlurHandler}
           {...register(nameInSchema)}
+          autoComplete="on"
           color={error ? "warning" : "default"}
           endContent={PasswordIcon}
           errorMessage={serverError === "" && error ? error : ""}

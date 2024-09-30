@@ -127,11 +127,11 @@ export const PackagesData:IPackages[] = [
 ]
 
 export const FAQData:IQuestion[] = [
-  {id:crypto.randomUUID(), title:"How does Ocean Script AI personalize website themes?"},
-  {id:crypto.randomUUID(), title:"Can I switch templates after my website is built?"},
-  {id:crypto.randomUUID(), title:"What kind of support is available if I encounter technical issues?"},
-  {id:crypto.randomUUID(), title:"Is it possible to use Ocean Script AI for e-commerce websites?"},
-  {id:crypto.randomUUID(), title:"Can I use Ocean Script AI to create multilingual websites?"},
+  {id:crypto.randomUUID(), title:"How does Ocean Script AI personalize website themes?", answer:"How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes"},
+  {id:crypto.randomUUID(), title:"Can I switch templates after my website is built?", answer:"How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes"},
+  {id:crypto.randomUUID(), title:"What kind of support is available if I encounter technical issues?", answer:"How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes"},
+  {id:crypto.randomUUID(), title:"Is it possible to use Ocean Script AI for e-commerce websites?", answer:"How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes"},
+  {id:crypto.randomUUID(), title:"Can I use Ocean Script AI to create multilingual websites?", answer:"How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes How does Ocean Script AI personalize website themes"},
 ]
 export const FooterIcons:ISocialIcon[] = [
   {id:crypto.randomUUID(), Icon: IconBrandFacebook, link:FACEBOOK_URL},

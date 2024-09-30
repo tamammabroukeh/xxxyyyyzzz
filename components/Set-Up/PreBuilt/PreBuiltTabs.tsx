@@ -1,13 +1,13 @@
 "use client";
 import { Tabs, Tab } from "@nextui-org/tabs";
-import "./SetUpStyles.css";
+import "../SetUpStyles.css";
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
 import TabWithIcon from "../TabWithIcon";
 
 import SelectSitePage from "./SelectSite/SelectSitePage";
-import ContentSection from "./ContentSection";
+import ContentInstallationSection from "./ContentInstallationSection";
 
 import {
   contentTitle,
@@ -15,7 +15,7 @@ import {
   selectsiteTitle,
 } from "@/data/constant";
 
-const SetUpTabs = () => {
+const PreBuiltTabs = () => {
   const [activeTab, setActiveTab] = useState<string>("selectsite");
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -32,19 +32,21 @@ const SetUpTabs = () => {
   useEffect(() => {
     window.history.pushState(null, "", `?tab=selectsite`);
   }, []);
+  const tab = searchParams.get("tab")?.toString();
+  const themeId = searchParams.get("themeId")?.toString();
+  // console.log(themeId);
   const title =
-    searchParams.get("tab") === "selectsite"
+    tab === "selectsite"
       ? selectsiteTitle
-      : searchParams.get("tab") === "content"
+      : tab === "content"
         ? contentTitle
         : installationTitle;
-  // console.log(searchParams.get("tab"));
   const special = <span className="text-gradient-inspiring">{title[1]}</span>;
 
   return (
     <div className="flex mx-1 md:mx-8 lg:mx-20 flex-col gap-3 md:gap-5">
       <div className="text-center">
-        <h2 className="w-full md:w-[60%] lg:w-[65%] mx-auto text-lg md:text-2xl lg:text-4xl xl:text-6xl font-[500]">
+        <h2 className="text-black-200 w-full md:w-[60%] lg:w-[65%] mx-auto text-lg md:text-2xl lg:text-4xl xl:text-6xl font-[500]">
           {title[0]}
           {special}
           {title[2] ?? ""}
@@ -52,7 +54,7 @@ const SetUpTabs = () => {
       </div>
       <div className="text-start flex justify-start items-start">
         <div className="flex w-full flex-col">
-          <form>
+          <div>
             <Tabs
               classNames={{
                 tab: "p-0 mx-0 md:mx-2",
@@ -74,12 +76,12 @@ const SetUpTabs = () => {
                 tab: "p-0 mx-0 md:mx-2",
                 cursor: "h-0 transparentItemSelected-tab",
                 tabContent:
-                  "group-data-[selected=true]:text-purple-700 text-black-200 font-[500] text-sm md:text-base lg:text-md",
+                  "group-data-[selected=true]:text-fuchsia-600 text-black-200 font-[500] text-sm md:text-base lg:text-md",
               }}
               defaultSelectedKey={
                 searchParams.get("tab")?.toString() || "selectsite"
               }
-              // disabledKeys={["content", "installation"]}
+              disabledKeys={!themeId ? ["content", "installation"] : []}
               selectedKey={activeTab}
               variant="underlined"
               onSelectionChange={(key: React.Key) =>
@@ -93,26 +95,26 @@ const SetUpTabs = () => {
               >
                 <SelectSitePage setSelectedKey={setActiveTab} />
               </Tab>
-
               <Tab
                 key="content"
                 title={<TabWithIcon title="Content" />}
                 value={"content"}
               >
-                <ContentSection />
+                <ContentInstallationSection setSelectedKey={setActiveTab} />
               </Tab>
-
               <Tab
                 key="installation"
                 title="Installation"
                 value={"Installation"}
-              />
+              >
+                <ContentInstallationSection setSelectedKey={setActiveTab} />
+              </Tab>
             </Tabs>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default SetUpTabs;
+export default PreBuiltTabs;

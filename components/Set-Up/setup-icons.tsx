@@ -237,12 +237,3 @@ export const RightImgThree: FC<React.SVGAttributes<{}>> = ({ ...props }) => {
     </svg>
   );
 };
-
-export const imgsPreBuilt = {img1:LeftImgOne, img2:LeftImgTwo, img3:LeftImgThree} 
-
-export const imgsFormScratch = {img1:RightImgOne, img2:RightImgTwo, img3:RightImgThree}
-
-export const Cards: ISetUpCard[] = [
-  {Imgs:imgsPreBuilt, description:"Start With a ready made website base.",title:"Pre built website", href:"/setup/selectsite", left:30, marginBottom:10}, 
-   {Imgs:imgsFormScratch, description:"Choose Header, Footer, Colors and Typography.",title:"Site Form Scratch", href:"/", left:18, marginBottom:2, zIndex:10}
-]

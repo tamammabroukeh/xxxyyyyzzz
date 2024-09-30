@@ -29,6 +29,7 @@ export default function AuthPageLayout({
           className="w-full h-full object-cover"
           placeholder="blur"
           src={img}
+          unoptimized={true}
         />
       </div>
     </div>

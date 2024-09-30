@@ -1,0 +1,33 @@
+.tabList {
+  background-color: inherit; 
+  display: flex;
+  flex-direction: row;
+}
+
+.tabItemSelected {
+  background-color: #41809A1A;
+  border: 1px solid;
+  border-image-source: linear-gradient(92.34deg, rgba(99, 115, 159, 0.342) 2.94%, rgba(150, 200, 217, 0.3496) 32.93%, rgba(140, 182, 239, 0.3496) 47.45%, rgba(198, 88, 178, 0.321848) 62.92%, rgba(191, 176, 243, 0.323) 75.77%, rgba(177, 72, 72, 0.2546) 90.05%, rgba(26, 16, 51, 0.1596) 98.14%);
+}
+@media (max-width: 767px) {
+  .tabList {
+    flex-direction: column;
+    border-radius: 10%;
+    box-shadow: 0px 15px 80px 0px #2C2F4D0F;
+  }
+  .tabItemSelected {
+    border-radius: 40px;
+    width: 70%;
+    margin: 0 auto;
+  }
+  .tabItem {
+    padding: 30px 20px;
+  }
+  .tabItem:first-of-type {
+    margin-top: 25px;
+
+  }
+  .tabItem:last-of-type {
+    margin-bottom: 25px;
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -13,12 +14,11 @@ import { toast } from "react-toastify";
 import InputWithLabel from "../InputWithLabel";
 
 import { SignUpSchema, SignUpType } from "@/validations/SignUpSchema";
-import { SignUpAction } from "@/actions/signup-action";
+import { SignUpAdminAction } from "@/api/services/auth/admin/actions";
 export default function SignUpForm() {
   const [isSelected, setIsSelected] = React.useState<boolean | undefined>(
     false,
   );
-  const notify = () => toast("");
   const [error, setError] = React.useState<string | undefined>("");
   const router = useRouter();
 
@@ -27,7 +27,7 @@ export default function SignUpForm() {
     handleSubmit,
     reset,
     getValues,
-    formState: { errors: formErrors },
+    formState: { errors: formErrors, defaultValues },
   } = useForm<SignUpType>({
     mode: "all",
     resolver: zodResolver(SignUpSchema),
@@ -39,20 +39,27 @@ export default function SignUpForm() {
     },
   });
 
-  const { executeAsync, result, isExecuting } = useAction(SignUpAction, {
+  const { executeAsync, result, isExecuting } = useAction(SignUpAdminAction, {
     onSuccess: ({ data }) => {
+      console.log(data);
       toast.success(data?.message);
     },
     onError: ({ error }) => {
       setError(error.serverError);
+      console.log(error);
+      toast.error(error.serverError);
     },
   });
 
+  console.log(result);
+
   const submitHandler: SubmitHandler<SignUpType> = async (data) => {
-    notify;
-    await executeAsync(getValues());
-    router.push("/");
-    reset(getValues());
+    console.log(data);
+
+    const response = await executeAsync(data);
+    console.log(response)
+    //router.push("/login");
+    // reset(defaultValues);
     // setIsLoading(true);
     // startTransistion(() => {
     //   SignUpAction(data).then((res) => {
@@ -62,19 +69,8 @@ export default function SignUpForm() {
     // });
   };
 
-  console.log(error);
-  const disableButton =
-    (!!getValues().name &&
-      !!getValues().email &&
-      !!getValues().password &&
-      !!getValues().confirmpassword) ||
-    (!!formErrors.name &&
-      !!formErrors.email &&
-      !!formErrors.password &&
-      !!formErrors.confirmpassword);
-
   return (
-    <>
+    <div>
       <form
         className="flex gap-2 justify-center flex-col"
         onSubmit={handleSubmit(submitHandler)}
@@ -135,9 +131,7 @@ export default function SignUpForm() {
         </div>
         <div className="flex flex-col mt-4 gap-2 justify-center items-center">
           <Button
-            className={`text-black-200 text-md bg-slate-400 px-24 py-3 rounded-2xl ${!disableButton ? "cursor-not-allowed" : "cursor-pointer"}`}
-            disabled={!disableButton}
-            // isLoading={isLoading}
+            className={`text-black-200 text-md bg-slate-400 px-24 py-3 rounded-2xl `}
             isLoading={isExecuting}
             type="submit"
           >
@@ -154,6 +148,6 @@ export default function SignUpForm() {
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 }

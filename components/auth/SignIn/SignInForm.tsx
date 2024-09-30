@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -6,10 +7,15 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useAction } from "next-safe-action/hooks";
+import { toast } from "react-toastify";
 
 import InputWithLabel from "../InputWithLabel";
 
 import { SignInSchema, SignInType } from "@/validations/SignInSchema";
+import { SignInAdminAction } from "@/api/services/auth/admin/actions";
+
 export default function SignInForm() {
   const {
     register,
@@ -18,14 +24,30 @@ export default function SignInForm() {
   } = useForm<SignInType>({
     mode: "all",
     resolver: zodResolver(SignInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
-  const [isLoading, setIsLoading] = React.useState(false);
   const [isSelected, setIsSelected] = React.useState(false);
-  const [error, setError] = React.useState("");
+  const [error, setError] = React.useState<string | undefined>("");
+  const router = useRouter();
+  
+  const { executeAsync, result, isExecuting } = useAction(SignInAdminAction, {
+    onSuccess: ({ data }) => {
+      console.log(data);
+      toast.success(data?.message);
+    },
+    onError: ({ error }) => {
+      setError("Invalid credientials" ?? error.serverError);
+      console.log(error);
+      toast.error(error.serverError);
+    },
+  });
+
   const submitHandler: SubmitHandler<SignInType> = async (data) => {
-    setIsLoading(true);
-    
-    setError("Invalid Email Or password");
+    const response = await executeAsync(data);
+    console.log(response)
   };
 
   console.log(error);
@@ -44,7 +66,7 @@ export default function SignInForm() {
             nameInSchema="email"
             placeholder="email@gmail.com"
             register={register}
-            serverError={error}
+            serverError={error ?? ""}
           />
           <InputWithLabel
             description="Password should contain 8 letters at least"
@@ -53,7 +75,7 @@ export default function SignInForm() {
             nameInSchema="password"
             placeholder="ocean23!"
             register={register}
-            serverError={error}
+            serverError={error ?? ""}
           />
         </div>
         {error && <p className="text-sm text-danger">{error}</p>}
@@ -74,8 +96,8 @@ export default function SignInForm() {
         <div className="flex flex-col mt-4 gap-2 justify-center items-center">
           <Button
             className={`text-black-200 text-md bg-slate-400 px-24 py-3 rounded-2xl ${formErrors?.password || formErrors?.email ? "cursor-not-allowed" : "cursor-pointer"}`}
-            disabled={!!formErrors?.password || !!formErrors?.email}
-            isLoading={isLoading}
+            // disabled={!!formErrors?.password || !!formErrors?.email}
+            isLoading={isExecuting}
             type="submit"
           >
             Sign in

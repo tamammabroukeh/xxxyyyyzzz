@@ -20,10 +20,7 @@ import { Logo } from "@/components/icons";
 export const Navbar = () => {
   const navItems = () => {
     return siteConfig.navItems.map((item) => (
-      <NavbarItem
-        key={item.href}
-        className="font-[400] md:text-[15px] lg:text-md"
-      >
+      <NavbarItem key={item.href} className="md:text-[15px] lg:text-[18px]">
         <NavigationLink href={item.href} isSection={item.isSection}>
           {item.label}
         </NavigationLink>
@@ -64,14 +61,14 @@ export const Navbar = () => {
   };
 
   return (
-    <NextUINavbar className="mx-auto max-w-[1080px] md:rounded-full py-2 bg-tranparent fixed">
+    <NextUINavbar className="mx-auto lg:max-w-[900px] xl:max-w-[1080px] md:rounded-full py-2 bg-tranparent fixed">
       <NavbarContent className="flex lg:-ml-6 gap-10" justify="center">
         <NavbarBrand as="li" className="">
           <NextLink href="/">
             <Logo />
           </NextLink>
         </NavbarBrand>
-        <ul className="hidden md:flex lg:gap-[35px] md:gap-4 justify-start">
+        <ul className="hidden md:flex md:gap-4 lg:gap-6 xl:gap-8  justify-start">
           {navItems()}
           {/* <ThemeSwitch /> */}
         </ul>

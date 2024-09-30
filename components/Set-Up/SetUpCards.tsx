@@ -3,7 +3,7 @@ import React from "react";
 import MotionCard from "../Animation/MotionCard";
 
 import SetUpCard from "./SetUpCard";
-import { Cards } from "./setup-icons";
+import { Cards } from "./data";
 const SetUpCards = () => {
   return (
     <>

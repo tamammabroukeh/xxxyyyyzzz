@@ -5,7 +5,7 @@ import { Loading } from "@/public";
 
 const LoadingSpinner = () => {
   return (
-    <div className="flex justify-center items-center mt-[10%]">
+    <div className="flex justify-center items-center min-h-screen">
       <Image priority alt="Loading..." src={Loading} />
     </div>
   );

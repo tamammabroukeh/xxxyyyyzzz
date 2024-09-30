@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
+import { Viewport } from "next";
 
-import { siteConfig } from "@/config/site";
 // export const metadata: Metadata = {
 //   title: {
 //     default: siteConfig.name,
@@ -25,5 +24,9 @@ export default function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="mx-auto bg-white">{children}</main>;
+  return (
+    <>
+      <main className="mx-auto bg-white">{children}</main>
+    </>
+  );
 }

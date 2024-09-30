@@ -59,7 +59,7 @@ export const ErrorPageLogo: FC<React.SVGAttributes<{}>> = ({ ...props }) => {
       />
     </svg>
   );
-}
+};
 // ai icons
 export const DalleAI: FC<React.SVGAttributes<{}>> = ({ ...props }) => {
   return (
@@ -170,7 +170,7 @@ export const OpenAI: FC<React.SVGAttributes<{}>> = ({ ...props }) => {
     </svg>
   );
 };
-export const StabilityAI: FC<React.SVGAttributes<{}>> = ({ ...props }) =>{
+export const StabilityAI: FC<React.SVGAttributes<{}>> = ({ ...props }) => {
   return (
     <svg
       fill="none"
@@ -240,6 +240,118 @@ export const StabilityAI: FC<React.SVGAttributes<{}>> = ({ ...props }) =>{
         d="M152.103 26.6296C152.468 25.3697 153.855 24.5992 155.123 24.7217C156.228 24.7715 157.259 25.5116 157.685 26.5292C158.037 27.3744 158.006 28.3809 157.56 29.1864C157.111 30.039 156.223 30.639 155.268 30.7441C154.274 30.8722 153.218 30.4814 152.578 29.7035C151.927 28.945 151.722 27.8518 151.987 26.896C152.015 26.8287 152.075 26.696 152.103 26.6306V26.6296Z"
         fill="#E80000"
       />
+    </svg>
+  );
+};
+
+export const Check: FC<React.SVGAttributes<{}>> = ({ ...props }) => {
+  return (
+    <svg
+      {...props}
+      fill="none"
+      height="35"
+      viewBox="0 0 35 35"
+      width="35"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect fill="#E0E7F9" height="28" rx="14" width="28" y="7" />
+      <g clipPath="url(#clip0_697_2570)">
+        <path
+          d="M7.29163 17.4999L14.5833 24.7916L29.1666 10.2083"
+          stroke="#333546"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_697_2570">
+          <rect fill="white" height="35" width="35" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+};
+
+export const Loader: FC<React.SVGAttributes<{}>> = ({ ...props }) => {
+  return (
+    <svg
+      {...props}
+      fill="none"
+      height="151"
+      viewBox="0 0 152 151"
+      width="152"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clipPath="url(#clip0_847_824)">
+        <path
+          d="M76 37.75V18.875"
+          stroke="#44464A"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="8"
+        />
+        <path
+          d="M102.74 48.7604L116.267 35.2333"
+          stroke="#44464A"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="8"
+        />
+        <path
+          d="M113.75 75.5H132.625"
+          stroke="#E151FF"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeOpacity="0.72"
+          strokeWidth="8"
+        />
+        <path
+          d="M102.74 102.24L116.267 115.767"
+          stroke="#44464A"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="8"
+        />
+        <path
+          d="M76 113.25V132.125"
+          stroke="#44464A"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="8"
+        />
+        <path
+          d="M49.2604 102.24L35.7333 115.767"
+          stroke="#44464A"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="8"
+        />
+        <path
+          d="M38.25 75.5H19.375"
+          stroke="#44464A"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="8"
+        />
+        <path
+          d="M49.2604 48.7604L35.7333 35.2333"
+          stroke="#44464A"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="8"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_847_824">
+          <rect
+            fill="white"
+            height="151"
+            transform="translate(0.5)"
+            width="151"
+          />
+        </clipPath>
+      </defs>
     </svg>
   );
 };

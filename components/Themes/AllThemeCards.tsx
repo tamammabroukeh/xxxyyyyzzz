@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+// "use client"
 import React from "react";
 import { Button } from "@nextui-org/button";
 import { IconTrendingUp } from "@tabler/icons-react";
@@ -8,9 +9,8 @@ import ThemeCard from "./ThemeCard";
 
 import { Themes } from "@/data";
 export default function AllThemeCards() {
-
-  return (
-    <div className="flex flex-col gap-7 md:gap-20">
+  
+  return Themes ? <div className="flex flex-col gap-7 md:gap-20">
       <div className="gap-3 md:gap-5 lg:gap-7 grid grid-cols-1 lg:grid-cols-2">
         {Themes.map((theme) => (
           <ThemeCard key={theme?.id} themesCard={theme!}/>  
@@ -19,6 +19,5 @@ export default function AllThemeCards() {
       <Link href='/setup'>
         <Button className="bg-transparent text-[25px] md:text-3xl text-blue-400" endContent={<IconTrendingUp className="w-7 h-7 md:w-11 md:h-11"/>}>See More</Button>
       </Link>
-    </div>
-  );
+    </div> : <p>No found themes yet</p>
 }

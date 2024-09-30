@@ -15,15 +15,15 @@
     border-radius: 0.5rem; 
     background: linear-gradient(90deg, #714DFF 0%, rgba(156, 131, 255, 0.37) 48.95%, rgba(225, 81, 255, 0.77) 75%, rgba(65, 128, 154, 0.9) 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     -webkit-mask-composite: xor;
     opacity: 0;
     transition: opacity 0.3s ease-in-out, transform 1s ease-in-out;
   }
-  .cardgroup:hover::before {
-    opacity: 1;
-  }
+.cardgroup:hover::before {
+  opacity: 1;
+}
 /* button card */
 .cardButton:hover::before {
   content: '';

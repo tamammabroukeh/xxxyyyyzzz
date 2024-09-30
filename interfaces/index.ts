@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { ButtonProps } from "@nextui-org/button";
 import { Icon, IconProps } from "@tabler/icons-react";
-import { ButtonHTMLAttributes, FC, ForwardRefExoticComponent, RefAttributes } from "react";
+import { LinkProps } from "next/link";
+import { AllHTMLAttributes, FC, ForwardRefExoticComponent, RefAttributes } from "react";
 
 export interface IErrorHandler {
   statusCode?: number;
@@ -84,6 +85,7 @@ export interface IPackages {
 export interface IQuestion {
   id:string;
   title:string;
+  answer:string;
 }
 // footer
 export interface ISocialIcon{
@@ -95,7 +97,26 @@ export interface ISocialIcon{
 export interface IButton extends ButtonProps {
   children: React.ReactNode;
   classes: string;
-  IconClasses: string;
+  IconClasses?: string;
+}
+// ui
+export interface IParagraph extends AllHTMLAttributes<HTMLParagraphElement> {
+  title: string;
+  classes: string;
+}
+export interface ILink extends LinkProps {
+  title: string;
+  // classes: string;
+}
+export interface IModal{
+  children: React.ReactNode;
+  isOpen:boolean;
+  classNames:{};
+  backdrop: "transparent" | "opaque" | "blur" | undefined;
+  onOpen:() => void;
+  onOpenChange: () => void;
+  classes:string;
+  placement:"center" | "auto" | "top" | "top-center" | "bottom" | "bottom-center" | undefined;
 }
 // array of images
 export interface ISvgImage{
@@ -127,4 +148,18 @@ export interface IBreadCrumb{
   title:string;
   param:string;
   content:React.ReactNode
+}
+// installation program
+export interface IProgramInstallation{
+  app_name: string;
+  app_url: string;
+  environment: "production" | "development";
+  app_debug: boolean;
+  app_log_level: string;
+  database_connection: string;
+  database_hostname: string;
+  database_port: string;
+  database_name: string;
+  database_username: string;
+  database_password: string;
 }

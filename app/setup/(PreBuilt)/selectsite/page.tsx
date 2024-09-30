@@ -1,8 +1,8 @@
 import SelectSitePage from "@/components/Set-Up/PreBuilt/SelectSite/SelectSitePage";
-import SetUpTabs from "@/components/Set-Up/PreBuilt/SetUpTabs";
+import PreBuiltTabs from "@/components/Set-Up/PreBuilt/PreBuiltTabs";
 
 const page = () => {
-  return <SetUpTabs />;
+  return <PreBuiltTabs />;
 };
 
 export default page;

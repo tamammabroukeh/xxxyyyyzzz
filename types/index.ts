@@ -10,7 +10,7 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 export type TFormInput<TFieldValue extends FieldValues> = {
   fieldTitle: string;
   type?: string;
-  placeholder: string;
+  placeholder?: string;
   nameInSchema: Path<TFieldValue>;
   register: UseFormRegister<TFieldValue>;
   error: string;
@@ -19,5 +19,6 @@ export type TFormInput<TFieldValue extends FieldValues> = {
   success?: string;
   disabled?: boolean;
   serverError: string;
-  description: string;
+  description?: string;
+  defaultValue?: string | number;
 };
