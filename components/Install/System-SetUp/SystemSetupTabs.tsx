@@ -45,7 +45,7 @@ const SystemSetupTabs = () => {
             form.setError(key, value);
           });
         } else {
-          toast.error(error.serverError ?? error.fetchError);
+          toast.error(error.serverError ?? error?.fetchError);
           setError((error.serverError ?? error.fetchError) as string);
         }
       },
