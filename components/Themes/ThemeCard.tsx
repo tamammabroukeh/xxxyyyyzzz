@@ -27,11 +27,13 @@ export default function ThemeCard({ themesCard, setSelectedKey }: {themesCard:IT
   const handleTabChange = (name: string, value: string) => {
     if(isAvailable){
       const params = new URLSearchParams(searchParams.toString());
+
       params.set(name, value);
       params.set("themeId", id);
       if(pathname === "/"){
         router.push(`/setup/selectsite?${params.toString()}`);
         console.log(params.toString())
+
         return;
       }
       window.history.pushState(null, "", `?${params.toString()}`);

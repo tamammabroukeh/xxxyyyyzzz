@@ -1,11 +1,14 @@
+/* eslint-disable prettier/prettier */
 "use client";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { IconArrowDown } from "@tabler/icons-react";
 
+import { Message } from "../ui";
+
 import { FAQData } from "@/data";
 
 export default function Questions() {
-  return (
+  return FAQData.length ? (
     <div className="mx-auto max-w-3xl">
       <Accordion
         className="flex md:my-10 lg:my-16 gap-3 md:gap-5 space-y-3 flex-col"
@@ -32,5 +35,10 @@ export default function Questions() {
         ))}
       </Accordion>
     </div>
+  ) : (
+    <Message
+      classes="text-4xl font-[500] text-red-500"
+      title="No found questions yet!"
+    />
   );
 }

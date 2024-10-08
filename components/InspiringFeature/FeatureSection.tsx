@@ -25,15 +25,15 @@ export default function FeatureSection() {
   const columnOne = () => {
     return <CardsLayout className="">
             {/* card 1 */}
-            <ItemLayout  className="basis-[55%] md:basis-[50%] lg:basis-[55%] relative">
+            <ItemLayout  className="basis-[55%] md:basis-[50%] lg:basis-[45%] xl:basis-[55%] relative">
               <Image alt="InspiringRectangle" className="w-full" src={InspiringRectangle1}/>
               <div className="absolute w-[80%] top-8 mx-7 text-white-300 text-start">
               <h3 className="font-[500] text-lg">Maximum Creativity</h3>
-              <p className="font-[400] text-base">Engage audience with your unique Style using AI.</p>
+              <p>Engage audience with your unique Style using AI.</p>
               </div>
             </ItemLayout>
             {/* card 2 */}
-            <ItemLayout className="basis-[45%] md:basis-[50%] lg:basis-[55%]  p-6 bg-white-100">
+            <ItemLayout className="basis-[45%] md:basis-[50%] lg:basis-[45%] xl:basis-[55%] p-6 bg-white-100">
               <div className="flex justify-between mx-2 items-center">
                 <h2 className="text-lg font-[500]">Task Manager</h2>
                 <Image alt="InspiringRectangle" src={InspiringRectangle21}  />
@@ -81,7 +81,13 @@ export default function FeatureSection() {
     return <CardsLayout className="lg:flex md:grid gap-5 md:grid-cols-2 lg:col-auto md:col-span-2">
             {/* card 6 */}
             <ItemLayout className="bg-white">
-              <Image alt="InspiringRectangle" className="w-full rounded-2xl" src={InspiringRectangle6}/>
+              <div  className="overflow-hidden max-h-[230px] xl:max-h-[300px]">
+                <Image alt="InspiringRectangle" className="w-full rounded-2xl " src={InspiringRectangle6}/>
+              </div>
+              <div className="p-4 w-[90%] text-black-200 text-start flex flex-col gap-2 justify-center items-start">
+                <h3 className="font-[500] text-lg">100% Integrated</h3>
+                <p>Seamlessly Connect all your existing apps.</p>
+              </div>
             </ItemLayout>
             {/* card 7 */}
             <ItemLayout className="relative">

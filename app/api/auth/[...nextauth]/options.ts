@@ -42,8 +42,8 @@ export const options: NextAuthOptions = {
     },
       async authorize(credentials) {
         try {
-          
-          const res = await fetch(`${process.env.END_POINT}/login`, {
+          console.log(credentials);
+          const res = await fetch(`${process.env.END_POINT}/owner/login`, {
           method: 'POST',
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" }
@@ -51,22 +51,21 @@ export const options: NextAuthOptions = {
         const user = await res.json()
 
         if (
-            credentials?.email === user.email &&
-            credentials?.password === user.password
+            user?.token
           ){
             return user
           }
-        } catch (error) {
-          //  throw new Error(error?.message);
+        } catch (error:any) {
+          throw new Error(error?.message);
         }
+
       // Return null if user data could not be retrieved
-      return null
+        return null
       },
     }),
   ],
   pages: {
     signIn: "/login",
-    newUser:"/sign-up"
   },
   callbacks: {
     async jwt({ token, user }) {

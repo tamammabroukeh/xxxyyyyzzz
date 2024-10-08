@@ -15,6 +15,11 @@ export interface ILink {
   classes: string;
   href: string;
 }
+
+export interface IChildren {
+  children: React.ReactNode;
+}
+
 export interface IHeading {
   children: React.ReactNode;
   classes: string;

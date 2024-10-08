@@ -1,9 +1,12 @@
+/* eslint-disable prettier/prettier */
+import { Message } from "../ui";
+
 import _Swiper from "./_Swiper";
 import Service from "./Service";
 
 import { ServicesData } from "@/data/index";
 export default function Services() {
-  return (
+  return ServicesData.length ? (
     <>
       <_Swiper numberOfSlides={3}>
         {ServicesData.slice(0, 4).map((skill, index) => (
@@ -16,5 +19,10 @@ export default function Services() {
         ))}
       </_Swiper>
     </>
+  ) : (
+    <Message
+      classes="text-4xl font-[500] text-red-500"
+      title="No found services yet!"
+    />
   );
 }

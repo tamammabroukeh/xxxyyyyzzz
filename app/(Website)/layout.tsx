@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { FooterSection, Navbar } from "@/components";
 import Sidebar from "@/components/ui/SideBar";
+import useAuthAsServer from "@/hooks/useAuthAsServer";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -15,16 +16,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function WebsiteLayout({
+export default async function WebsiteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await useAuthAsServer();
+
   return (
     <>
       <Navbar />
-      <main className="mx-auto relative max-w-full">{children}
-        {/* <Sidebar /> */}
+      <main className="mx-auto relative max-w-full">
+        {children}
+        {session && <Sidebar />}
       </main>
       <FooterSection />
     </>

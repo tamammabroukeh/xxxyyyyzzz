@@ -7,16 +7,21 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { SubmitHandler } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
 
 import InputWithLabel from "../InputWithLabel";
 
 import { SignInSchema, SignInType } from "@/validations/SignInSchema";
 import { SignInAdminAction } from "@/api/services/auth/admin/actions";
+import { SignInOwnerAction } from "@/api/services/auth/owner/actions";
 
 export default function SignInForm() {
+  const [isSelected, setIsSelected] = React.useState(false);
+  const [error, setError] = React.useState<string | undefined>("");
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -29,28 +34,31 @@ export default function SignInForm() {
       password: "",
     },
   });
-  const [isSelected, setIsSelected] = React.useState(false);
-  const [error, setError] = React.useState<string | undefined>("");
-  const router = useRouter();
-  
-  const { executeAsync, result, isExecuting } = useAction(SignInAdminAction, {
+  const pathname = usePathname();
+  const isAdminPath = pathname === "/login" ? true : false  
+  const { executeAsync, result, isExecuting } = useAction(isAdminPath ? SignInAdminAction : SignInOwnerAction, {
     onSuccess: ({ data }) => {
       console.log(data);
       toast.success(data?.message);
     },
     onError: ({ error }) => {
-      setError("Invalid credientials" ?? error.serverError);
-      console.log(error);
-      toast.error(error.serverError);
+      setError(error.serverError);
+      // console.log("error",error);
+      toast.error(error?.serverError ?? "Invalid credientials");
     },
   });
 
   const submitHandler: SubmitHandler<SignInType> = async (data) => {
-    const response = await executeAsync(data);
-    console.log(response)
-  };
+    // const response = await executeAsync(data);
 
-  console.log(error);
+    // console.log("submit",response)
+    await signIn("credentials",{
+        email:data.email,
+        pasword:data.password,
+        callbackUrl:"/",
+        redirect:true
+      })
+  };
 
   return (
     <div>
@@ -78,7 +86,6 @@ export default function SignInForm() {
             serverError={error ?? ""}
           />
         </div>
-        {error && <p className="text-sm text-danger">{error}</p>}
         <div className="flex text-xs justify-between items-center">
           <Checkbox
             className="text-gray-600"
@@ -96,7 +103,6 @@ export default function SignInForm() {
         <div className="flex flex-col mt-4 gap-2 justify-center items-center">
           <Button
             className={`text-black-200 text-md bg-slate-400 px-24 py-3 rounded-2xl ${formErrors?.password || formErrors?.email ? "cursor-not-allowed" : "cursor-pointer"}`}
-            // disabled={!!formErrors?.password || !!formErrors?.email}
             isLoading={isExecuting}
             type="submit"
           >
@@ -106,7 +112,7 @@ export default function SignInForm() {
             <p className="text-gray-600 text-sm">Don`t have an account?</p>
             <Link
               className="text-base font-[500] text-blue-500 underline"
-              href={"/sign-up"}
+              href={isAdminPath ? "/sign-up" : "/owner/sign-up"}
             >
               Sign up
             </Link>

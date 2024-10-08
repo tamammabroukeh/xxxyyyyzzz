@@ -10,9 +10,8 @@ import { toast } from "react-toastify";
 import { DisplayServerActionResponse } from "../auth/DisplayServerActionResponse";
 
 import { ServiceSchema, ServiceType } from "@/validations/Services";
-import { sendServiceAction } from "@/actions/service-action";
+// import { sendServiceAction } from "@/actions/service-action";
 export default function CustomerServicesForm() {
-  const notify = () => toast("Sending Your message...");
   const {
     register,
     getValues,
@@ -26,22 +25,17 @@ export default function CustomerServicesForm() {
       text: "",
     },
   });
-  const { executeAsync, isExecuting } = useAction(sendServiceAction, {
-    // onExecute: ({}) => {
-    //   toast.loading("Sending Your message...");
-    // },
-    onSuccess: ({ data }) => {
-      toast.success(data?.message);
-    },
-    onError: ({ error }) => {
-      toast.error(error.serverError);
-    },
-  });
+  // const { executeAsync, isExecuting } = useAction(sendServiceAction, {
+  //   onSuccess: ({ data }) => {
+  //     toast.success(data?.message);
+  //   },
+  //   onError: ({ error }) => {
+  //     toast.error(error.serverError);
+  //   },
+  // });
   const submitHandler: SubmitHandler<ServiceType> = async (data) => {
-    notify;
     // console.log(data);
-    await executeAsync(getValues());
-    reset(getValues());
+    // await executeAsync(getValues());
   };
   
   const error = formErrors.text?.message;
@@ -76,7 +70,7 @@ export default function CustomerServicesForm() {
         <Button
           className={`absolute rounded-2xl bg-blue-500 text-background mt-6 lg:mt-6 px-14 text-md leading-[24px] ${error && "md:mt-12 cursor-not-allowed"}`}
           disabled={!!error}
-          isLoading={isExecuting}
+          // isLoading={isExecuting}
           type="submit"
         >
           Send

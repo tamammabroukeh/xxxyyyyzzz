@@ -1,10 +1,13 @@
+/* eslint-disable prettier/prettier */
+import { Message } from "../ui";
+
 import { PackagesSwiper, SinglePackage } from ".";
 
 import { IPackages } from "@/interfaces";
 import { PackagesData } from "@/data";
 
 export default function Packages() {
-  return (
+  return PackagesData.length ? (
     <PackagesSwiper>
       {PackagesData.map(
         ({
@@ -31,5 +34,10 @@ export default function Packages() {
         ),
       )}
     </PackagesSwiper>
+  ) : (
+    <Message
+      classes="text-4xl font-[500] text-red-500"
+      title="No found pricing yet!"
+    />
   );
 }

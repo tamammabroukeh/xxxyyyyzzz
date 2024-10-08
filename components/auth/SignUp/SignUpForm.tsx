@@ -8,19 +8,20 @@ import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { SubmitHandler } from "react-hook-form";
 import { useAction } from "next-safe-action/hooks";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { signIn } from 'next-auth/react'
 
 import InputWithLabel from "../InputWithLabel";
 
 import { SignUpSchema, SignUpType } from "@/validations/SignUpSchema";
 import { SignUpAdminAction } from "@/api/services/auth/admin/actions";
+import { SignUpOwnerAction } from "@/api/services/auth/owner/actions";
 export default function SignUpForm() {
   const [isSelected, setIsSelected] = React.useState<boolean | undefined>(
     false,
   );
   const [error, setError] = React.useState<string | undefined>("");
-  const router = useRouter();
 
   const {
     register,
@@ -38,17 +39,25 @@ export default function SignUpForm() {
       confirmpassword: "",
     },
   });
-
-  const { executeAsync, result, isExecuting } = useAction(SignUpAdminAction, {
+  const pathname = usePathname();
+  const isAdminPath = pathname === "/sign-up" ? true : false
+  console.log(isAdminPath);
+  const { executeAsync, result, isExecuting } = useAction(isAdminPath ? SignUpAdminAction : SignUpOwnerAction, {
     onSuccess: ({ data }) => {
       console.log(data);
       toast.success(data?.message);
     },
     onError: ({ error }) => {
+      if (error.validationErrors) {
+          Object.entries(error.validationErrors).forEach(([key, value]) => {
+          // @ts-ignore
+          form.setError(key, value);
+        });
       setError(error.serverError);
       console.log(error);
       toast.error(error.serverError);
-    },
+      }
+    }
   });
 
   console.log(result);
@@ -57,16 +66,16 @@ export default function SignUpForm() {
     console.log(data);
 
     const response = await executeAsync(data);
-    console.log(response)
-    //router.push("/login");
-    // reset(defaultValues);
-    // setIsLoading(true);
-    // startTransistion(() => {
-    //   SignUpAction(data).then((res) => {
-    //     setError(res?.toString());
-    //     // setSuccess(data.success);
-    //   });
-    // });
+
+    console.log('response', response)
+    // if(response?.data?.res.token){
+    //   await signIn("credentials",{
+    //     email:data.email,
+    //     pasword:data.password,
+    //     redirect:true,
+    //     callbackUrl:"/"
+    //   })
+    // }
   };
 
   return (
@@ -141,7 +150,7 @@ export default function SignUpForm() {
             <p className="text-gray-600 text-sm">Already have an account?</p>
             <Link
               className="text-base font-[500] text-blue-500 underline"
-              href={"/login"}
+              href={isAdminPath ? "/login" : "/owner/login"}
             >
               Sign in
             </Link>

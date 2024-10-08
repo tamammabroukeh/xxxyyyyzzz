@@ -35,7 +35,6 @@ const apiFetcher = async <T>(
   url: string,
   options?: RequestInit,
 ): Promise<T> => {
-  console.log(options)
   const { headers, method, ...restOptions } = options || {};
   const init = {
     method: method ?? "GET",
@@ -44,15 +43,22 @@ const apiFetcher = async <T>(
     },
     ...restOptions,
   };
-  console.log(`${process.env.END_POINT}${url}`)
+
   try {
     const response = await fetch(`${process.env.END_POINT}${url}`, init);
-    console.log(response)
+
+    // console.log(response)
     if (!response.ok) {
       const error = new Error("error while fetching data");
-      console.log("error",response)
+
+      // console.log("error",response)
       // @ts-ignore
-      error.info = response.json();
+      // console.log("error message",response?.message)
+      if (response?.status !== 404) {
+        // @ts-ignore
+        error.info = await response.json();
+      }
+      // console.log(error);
       // @ts-ignore
       error.status = response.status;
       switch (response.status) {
@@ -84,7 +90,6 @@ const apiFetcher = async <T>(
 
     return response.json();
   } catch (error) {
-    console.log("Fetch error:", error);
     console.error("Fetch error:", error);
     throw error;
   }

@@ -8,6 +8,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { Colfax } from "@/config/fonts";
 import "react-toastify/dist/ReactToastify.css";
+import AuthProvider from "@/context/AuthProvider";
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -35,10 +36,12 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <head />
       <body className={clsx("bg-background font-colfax", Colfax.className)}>
-        <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
-          <main className="mx-auto max-w-full">{children}</main>
-          <ToastContainer position="top-left" />
-        </Providers>
+        <AuthProvider>
+          <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
+            <main className="mx-auto max-w-full">{children}</main>
+            <ToastContainer position="top-left" />
+          </Providers>
+        </AuthProvider>
       </body>
     </html>
   );

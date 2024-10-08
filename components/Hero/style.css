@@ -6,7 +6,7 @@
         #c2cbf5,
         #6e40f9
       ) border-box;
-  animation: 3s rotate linear infinite;
+  animation: 2s rotate linear infinite;
 }
 
 @keyframes rotate {
