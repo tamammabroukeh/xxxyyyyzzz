@@ -1,8 +1,7 @@
 // import SignIn from "@/components/auth/SignIn/SignIn";
 import { redirect } from "next/navigation";
 
-import { AuthButtons, AuthPageLayout, Heading } from "..";
-
+import { AuthButtons, AuthPageLayout, Heading } from "@/components/auth";
 import SignInForm from "@/components/auth/SignIn/SignInForm";
 import { SignInBackground } from "@/public";
 import useAuthAsServer from "@/hooks/useAuthAsServer";
